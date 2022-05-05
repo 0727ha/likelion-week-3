@@ -17,7 +17,7 @@ let toDos = [];
 function saveToDos() {
   //[quiz] 값 추가 : 'localStorage'를 참고하여 값 추가하기
   //값을 문자열 객체로 저장하기 위하여 JSON.stringify 사용
-  localStorage.add(TODOS_KEY, JSON.stringify(toDos));
+  localStorage.getItem(TODOS_KEY, JSON.stringify(toDos));
 }
 
 function deleteToDo(event) {
@@ -37,7 +37,7 @@ function completedTodo(event) {
   const is_checked = li.firstChild.checked;
 
   //[quiz] 체크 박스가 체크가 되었다면 if 부분이 실행, 아니면 else 부분 실행
-  if (is_checked === null) {
+  if (is_checked ===true) {
     li.style.textDecoration = "line-through";
     li.style.color = "grey";
   } else {
@@ -49,11 +49,11 @@ function completedTodo(event) {
 
 function paintToDo(newTodo) {
   //[quiz] appendChild() vs createElement() 비교하고 채워놓기
-  const li = document.appendChild("li");
+  const li = document.createElement("li");
   li.id = newTodo.id;
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
-  const span = document.appendChild("span");
+  const span = document.createElement("span");
   span.innerText = newTodo.text;
   const button = document.createElement("button");
   button.innerText = "❌";
